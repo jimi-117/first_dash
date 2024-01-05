@@ -1,6 +1,5 @@
 # first_dash
-
-Paris Tree Visualization Dash App
+# Paris Tree Visualization Dash App
 Welcome to the repository for the Paris Tree Visualization Dash application. This interactive web application leverages Python's Dash framework and Plotly to provide a visual exploration of tree data in Paris.
 Application Overview
 The Dash application is designed to allow users to filter and visualize different attributes of trees across Paris. Users can select criteria such as the 'Domain' (DOMANIALITE) and the 'Development Stage' (STADE DE DEVELOPPEMENT) of trees through dropdown menus to customize the displayed data.
