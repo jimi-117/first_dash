@@ -54,7 +54,7 @@ app = dash.Dash(__name__)
 # application layout
 app.layout = (
     html.Div(children=[
-        html.H1(hildren='Degemer Mat !'),
+        html.H1(children='Degemer Mat !'),
         dcc.Dropdown(
             id='domanialite-dropdown', 
             options=[{'label': i, 'value': i} for i in df['DOMANIALITE'].unique()],
@@ -65,19 +65,28 @@ app.layout = (
             options=[{'label': i, 'value': i} for i in df['STADE DE DEVELOPPEMENT'].unique()],
             value='Adulte'
             ),
-        dcc.Graph(id='graph')
+        dcc.Graph(id='graph'),
+        dcc.Graph(id='graph2'),
+        
     ])
 )
 
 # callback decolator
 @app.callback(
     Output('graph', 'figure'),
-    [Input('omanialite-dropdown', 'value'), 
+    Output('graph2', 'figure'),
+    [Input('domanialite-dropdown', 'value'), 
      Input('stade-development-dropdown', 'value')]
            )
 def update_graph(domanialite_value, stade_development_value):
     filtered_df = df[(df['DOMANIALITE'] == domanialite_value) &
                      (df['STADE DE DEVELOPPEMENT'] == stade_development_value)]
+    
+    fig = px.histogram(filtered_df, x='HAUTEUR (m)', title='Disp')
+    fig2 = px.histogram(filtered_df, x='CIRCONFERENCE (cm)', title='Disp')
+    return fig, fig2
+    
+
     
 if __name__ == '__main__':
     app.run_server(debug=True)
